@@ -7,7 +7,7 @@
 <body>
     <script src="jquery.js"></script>
     <script>
-    var url = 'www.google.com'
+    var url = 'http://137.110.160.230'
     $.getJSON('http://allorigins.me/get?url=' + encodeURIComponent(url) + '&callback=?', function(data){
     	alert(data.contents);
     	console.log(data.contents);
