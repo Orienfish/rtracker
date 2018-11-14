@@ -1,5 +1,5 @@
 # rtracker
-rtracker is a reading assistive tool based on eye tracking, especially to help people with [dyslexia](http://dyslexia.yale.edu/dyslexia/what-is-dyslexia/). These readers have difficulties in tracking lines and breaking up words into syllables. Targeting at these symptoms, we are trying to develop an interactive tool based on eye tracking. Our tool is different from others in the highly interactive way between readers and material - instead of requiring the readers to manually clicking or taking notes, our tool analyzes and adjusts display according to the reading focus automatically.
+"rtracker" is a reading assistive tool based on eye tracking, especially to help people with [dyslexia](http://dyslexia.yale.edu/dyslexia/what-is-dyslexia/). These readers have difficulties in tracking lines and breaking up words into syllables. Targeting at these symptoms, we are trying to develop an interactive tool based on eye tracking. Our tool is different from others in the highly interactive way between readers and material - instead of requiring the readers to manually clicking or taking notes, our tool analyzes and adjusts display according to the reading focus automatically.
 
 The features of rtracker include:
 - Fundamental Features
