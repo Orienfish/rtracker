@@ -1,0 +1,12 @@
+C:\Users\Tina\Downloads\CoreSDK-master\CoreSDK-master\samples\Streams\Interaction_Streams_103\bin\Debug\Tobii.EyeX.Client.dll
+C:\Users\Tina\Downloads\CoreSDK-master\CoreSDK-master\samples\Streams\Interaction_Streams_103\bin\Debug\AnyCPU\Tobii.EyeX.Client.dll
+C:\Users\Tina\Downloads\CoreSDK-master\CoreSDK-master\samples\Streams\Interaction_Streams_103\bin\Debug\Interaction_Streams_103.exe.config
+C:\Users\Tina\Downloads\CoreSDK-master\CoreSDK-master\samples\Streams\Interaction_Streams_103\bin\Debug\Interaction_Streams_103.exe
+C:\Users\Tina\Downloads\CoreSDK-master\CoreSDK-master\samples\Streams\Interaction_Streams_103\bin\Debug\Interaction_Streams_103.pdb
+C:\Users\Tina\Downloads\CoreSDK-master\CoreSDK-master\samples\Streams\Interaction_Streams_103\bin\Debug\Tobii.EyeX.Client.Net20.dll
+C:\Users\Tina\Downloads\CoreSDK-master\CoreSDK-master\samples\Streams\Interaction_Streams_103\bin\Debug\Tobii.Interaction.Model.dll
+C:\Users\Tina\Downloads\CoreSDK-master\CoreSDK-master\samples\Streams\Interaction_Streams_103\bin\Debug\Tobii.Interaction.Net.dll
+C:\Users\Tina\Downloads\CoreSDK-master\CoreSDK-master\samples\Streams\Interaction_Streams_103\obj\Debug\Interaction_Streams_103.csproj.CoreCompileInputs.cache
+C:\Users\Tina\Downloads\CoreSDK-master\CoreSDK-master\samples\Streams\Interaction_Streams_103\obj\Debug\Interaction_Streams_103.csproj.CopyComplete
+C:\Users\Tina\Downloads\CoreSDK-master\CoreSDK-master\samples\Streams\Interaction_Streams_103\obj\Debug\Interaction_Streams_103.exe
+C:\Users\Tina\Downloads\CoreSDK-master\CoreSDK-master\samples\Streams\Interaction_Streams_103\obj\Debug\Interaction_Streams_103.pdb
