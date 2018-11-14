@@ -16,7 +16,7 @@ The features of rtracker include:
 ## Project Architecture
 Technically, we are trying to build a browser extension which receives real-time eye focus coordinations from Tobii and modifying text display on the browser according to it. The technical architecture of the project is shown in the following figure.
 <div align="center"><img src="img/arch.png" width=600 height=350 alt="arch"></div>
-There are four main difficuties in this project. The first one is how to send the data from Tobii SDK (C#) to our extension (Javascript). The second thing is the mapping from coordination to words, as our features are on word-level. Besides, the interface of highlighting, blurring and popups need careful design to be user-friendly. Last but not least, how to break up world into syllables and integrate speaking function with this. Each obstacle is took by one of our group members.
+There are four main difficuties in this project. The first one is how to send the data from Tobii SDK (C#) to our extension (Javascript). The second thing is the mapping from coordination to words, as our features are on word-level. Besides, the interface of highlighting, blurring and popups need careful design to be user-friendly. Last but not least, how to break up words into syllables and integrate speaking function with this. Each obstacle is took by one of our group members.
 
 ## Project Management
 View our progress on [Github Project](https://github.com/Orienfish/rtracker/projects/1).
