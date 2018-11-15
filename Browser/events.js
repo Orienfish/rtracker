@@ -23,15 +23,15 @@ function read (e) {
  */
 function change_lines (e) {
   let i = 0;
-  let spans = e.getElementsByTagName("span");
+  let hl_spans = e.getElementsByClassName('hl');
+  let blur_top_spans = e.getElementsByClassName('blur_top');
+  console.log(blur_top_spans)
 
   return function () {
     // go through each of the lines
-    if ( i < spans.length) {
+    if ( i < hl_spans.length) {
       // perform the removal of highlighting
-      if (i) {
-        highlight_next(spans[i], spans[i-1])
-      }
+      highlight_next(hl_spans[i], hl_spans[i-1])
       i++;
     }
   }
