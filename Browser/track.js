@@ -20,7 +20,6 @@ function track (e_list, i) {
 
       // bottom blur block
       if (i < e_list.length-1) {
-        console.log(e_list[i+1])
         unblur(e_list[i+1]);
       }
 

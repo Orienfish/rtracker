@@ -1,3 +1,7 @@
+# HOW TO RUN
+web-ext run
+- This will create a popup which you can then enter in the url - https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/What_next_ 
+
 # RTracker
 The purpose of this browser extension is to be able to provide the browser extension that will influence 
 the webpage content and communicate with the eye tracker.

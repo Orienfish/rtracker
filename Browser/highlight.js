@@ -21,7 +21,6 @@ function highlight_next(next, prev = 0) {
       highlight_element(next);
       // perform the removal of highlighting
       if (prev) {
-        console.log('removing span highlighting');
         remove_inner_tags(prev);
       }
 
