@@ -25,12 +25,29 @@ function change_lines (e) {
   let i = 0;
   let hl_spans = e.getElementsByClassName('hl');
   let blur_top_spans = e.getElementsByClassName('blur_top');
-  console.log(blur_top_spans)
+  let blur_bottom_divs = e.getElementsByClassName('blur_bottom');
+  console.log(blur_bottom_divs)
 
   return function () {
     // go through each of the lines
     if ( i < hl_spans.length) {
-      // perform the removal of highlighting
+
+      // perform bottom blurring
+      if (i < blur_bottom_divs.length) {
+        blur_next(blur_bottom_divs[i], blur_bottom_divs[i-1])
+      } else if (i == blur_bottom_divs.length) {
+        unblur(blur_bottom_divs[i-1])
+      }
+
+      // perform top blurring
+      /*if (i < 2) {
+        blur_next(blur_top_spans[i], blur_top_spans[i-1])
+      }*/
+      
+      //else if (i == blur_bottom_divs.length) {
+        // unblur(blur_bottom_divs[i-1])
+        //}
+
       highlight_next(hl_spans[i], hl_spans[i-1])
       i++;
     }
