@@ -24,9 +24,9 @@ function read (e) {
 function change_lines (e) {
   let i = 0;
   let hl_spans = e.getElementsByClassName('hl');
-  let blur_top_spans = e.getElementsByClassName('blur_top');
+  let blur_top_blocks = []
   let blur_bottom_divs = e.getElementsByClassName('blur_bottom');
-  console.log(blur_bottom_divs)
+  console.log(hl_spans);
 
   return function () {
     // go through each of the lines
@@ -39,14 +39,10 @@ function change_lines (e) {
         unblur(blur_bottom_divs[i-1])
       }
 
-      // perform top blurring
-      /*if (i < 2) {
-        blur_next(blur_top_spans[i], blur_top_spans[i-1])
-      }*/
-      
-      //else if (i == blur_bottom_divs.length) {
-        // unblur(blur_bottom_divs[i-1])
-        //}
+      // top blur block
+      if (i > 1) {
+        blur(hl_spans[i-2]);
+      }
 
       highlight_next(hl_spans[i], hl_spans[i-1])
       i++;

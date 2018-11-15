@@ -7,11 +7,6 @@ let id_generator = 0;
 let ps = document.getElementsByTagName("p");
 let p_test = ps[1];
 
-// hide most of the elements
-/*for (let i = 2; i < ps.length; i++) {
-  ps[i].style.display = "none";
-}*/
-
 // generate the ids for each line in p breakdowns
 function gen_id () {
   return "line_" + id_generator++;
@@ -47,14 +42,9 @@ function span_paragraphs (p) {
     lines[i] = "<span class=hl>" + lines[i] + "</span>"; 
   }
 
-  // top blur block
-  for (i = 3; i < lines.length; i++) {
-    lines[0] = "<span class=blur_top>" + lines[0];
-    lines[i-2] = lines[i-2] + "</span>"; 
-  }
-
   // bottom blur block - using div otherwise closing tags mess up
   for (i = 0; i < lines.length - 2; i++) {
+    //blur_blocks_bottom[i] = lines.slice(2); 
     lines[i+2] = "<div class=blur_bottom>" + lines[i+2];
     lines[lines.length-1] = lines[lines.length-1] + "</div>"; 
   }
