@@ -42,16 +42,8 @@ function span_paragraphs (p) {
     lines[i] = "<span class=hl>" + lines[i] + "</span>"; 
   }
 
-  // bottom blur block - using div otherwise closing tags mess up
-  for (i = 0; i < lines.length - 2; i++) {
-    //blur_blocks_bottom[i] = lines.slice(2); 
-    lines[i+2] = "<div class=blur_bottom>" + lines[i+2];
-    lines[lines.length-1] = lines[lines.length-1] + "</div>"; 
-  }
-
   p.innerHTML = lines.join(" ");
 }
-
 
 // generate the static example
 span_paragraphs(p_test);
