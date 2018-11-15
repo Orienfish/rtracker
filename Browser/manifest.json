@@ -23,7 +23,8 @@
               "highlight.js",
               "blur.js",
               "track.js", 
-              "events.js"
+              "events.js",
+              "socket.js"
             ]
     }
   ]
