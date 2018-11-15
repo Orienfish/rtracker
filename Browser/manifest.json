@@ -21,7 +21,8 @@
       "js": [
               "reformat.js", 
               "highlight.js",
-              "blur.js"
+              "blur.js",
+              "events.js"
             ]
     }
   ]
