@@ -1,3 +1,13 @@
 Browser/node_modules
 Tobii/samples/.vs/Tobii.CoreSDK.Samples/v15/.suo
 *.suo
+*.suo
+*.lock
+*.suo
+*.ide
+Tobii/samples/.vs/Tobii.CoreSDK.Samples/v15/Server/sqlite3/storage.ide-shm
+*.ide-wal
+Tobii/samples/packages/Tobii.Interaction.0.7.3/license/Tobii_Core_SDK_and_Gaming_SDK_License_Agreement_v_2.pdf
+*.pdf
+Tobii/samples/TobiiApp/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+*.cache
