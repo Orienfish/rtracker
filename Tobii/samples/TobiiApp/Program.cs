@@ -20,7 +20,6 @@ namespace TobiiApp
             var host = new Host();
             var gazePointDataStream = host.Streams.CreateGazePointDataStream();
 
-            // start server and send gaze data upon socket opening
             server.Start(socket =>
             {
                 socket.OnOpen = () =>
@@ -30,7 +29,7 @@ namespace TobiiApp
 
                     gazePointDataStream.GazePoint((x, y, ts) =>
                     {
-                        // send gaze data
+                        // send x,y data
                         allSockets.ToList().ForEach(s => s.Send(String.Concat(x.ToString(), ",", y.ToString())));
                     });
                 };
@@ -40,15 +39,9 @@ namespace TobiiApp
                     allSockets.Remove(socket);
                 };
 
-                socket.OnMessage = message =>
-                {
-                    Console.WriteLine(message);
-                    allSockets.ToList().ForEach(s => s.Send("Echo: " + message));
-                };
-                
-                
             });
 
+            Console.ReadKey();
             host.DisableConnection();
         }
     }
