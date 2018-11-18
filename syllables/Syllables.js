@@ -1,5 +1,7 @@
 const https = require('https');
+const fs = require('fs');
 const key = "f5b9a3a3-0560-4ea5-8a8d-de8e489336c5";
+//const arpabetDict = require('./data.json');
 const conversionDict = {
     "AA" : "ɑ",
     "AE" : "æ",
@@ -54,6 +56,16 @@ const conversionDict = {
     "ZH" : "ʒ"
 };
 let syllableDict = {};
+let arpabetDict = {};
+
+fs.readFile('data.json', (err, data) => {
+    if (err) throw err;
+    arpabetDict = JSON.parse(data);
+    console.log(arpabetDict['ABNORMAL']);
+});
+console.log('when does this execute?');
+//const arpabetDict = JSON.parse(fs.readFileSync('./data.json'));
+
 
 function ArpabetToIpa(phonetic) {
     return conversionDict[phonetic];
@@ -82,13 +94,26 @@ function RequestWordData(word) {
             let response = JSON.parse(data);
             let syllables = response[0]['hwi']['hw'].split('*');
             //console.log(syllables);
-            syllableDict[word] = syllables;
+            syllableDict[word]['syllables'] = syllables;
+            
         });
     }).on('error', (err) => {
         console.log('Error: ' + err.message);
     });
+
+    // get the pronunciation of the word while the dictionary API is processing
+    pronun = arpabetDict[word];
+    let i, j;
+    for(i = 0; i < pronun.length; i++){
+        for(j = 0; j < pronun[i].length; j++){
+            pronun[i][j] = ArpabetToIpa(pronun[i][j]);
+        }
+    }
+    console.log(pronun);
+    syllableDict[word]['pronunciation'] = pronun;
 }
 
 // Test to make sure that the function is working
 RequestWordData("actually");
 RequestWordData("literally");
+//console.log(arpabetDict['really']);
