@@ -37,4 +37,12 @@ function change_lines (e) {
   }
 }
 
-//read(p_test);
+// testing getting elements with mouse click
+console.log('adding event listener for clicks');
+document.addEventListener("click", function(e){
+    let mouse_x = e.clientX;               // Get the horizontal coordinate
+    let mouse_y = e.clientY;               // Get the vertical coordinate
+    let line = document.elementFromPoint(mouse_x,mouse_y); //get the line using mouse coordinates
+    track(line)
+
+});
