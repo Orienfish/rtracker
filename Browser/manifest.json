@@ -20,7 +20,9 @@
               "track.js", 
               "events.js",
               "socket.io.js",
-              "mouse_events.js"
+              "mouse_events.js",
+              "webgazer.js",
+              "web_gazer.js"
             ]
     }
   ]

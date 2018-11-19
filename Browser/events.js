@@ -1,4 +1,4 @@
-/** TODO: complete this
+/** 
  * apply styling to specific line in element
  * @param {*} e - element containing lines to read
  * @param {*} i - the current line to read
@@ -37,5 +37,4 @@ function change_lines (e) {
   }
 }
 
-read(p_test);
-
+//read(p_test);
