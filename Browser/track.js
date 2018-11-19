@@ -29,8 +29,8 @@ function track_index (e_list, i) {
       }
 
       // bottom blur block
-      if (i > 1) {
-        for (let blur_index = 0; blur_index < i-1; blur_index++) {
+      if (i < e_list.length + 2) {
+        for (let blur_index = e_list.length - 1; blur_index > i+1; blur_index--) {
           blur(e_list[blur_index]);
         }
       }
