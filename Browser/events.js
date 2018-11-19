@@ -17,7 +17,7 @@ function read (e) {
 }
 
 /**
- * 
+ * TODO: instead of having this work by these events. Have it work by mouse_click then with the tobii reader. 
  * @param {*} e - element containing spans that will be called by the timer to update the highlighting
  * @return a function that changes span styling and innerHTML
  */

@@ -20,7 +20,7 @@
               "track.js", 
               "events.js",
               "socket.io.js",
-              "socket.js"
+              "mouse_events.js"
             ]
     }
   ]

@@ -13,7 +13,9 @@ function highlight_element(e) {
 }
 
 function remove_inner_tags(e) {
-  e.innerHTML = e.innerText;
+  console.log(e.innerHTML);
+  e.innerHTML = e.innerText+"<br>";
+  console.log(e.innerText);
 }
 
 function highlight_next(next, prev = 0) {
@@ -23,7 +25,4 @@ function highlight_next(next, prev = 0) {
       if (prev) {
         remove_inner_tags(prev);
       }
-
 }
-
-highlight_element(p_zero);
