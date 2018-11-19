@@ -61,11 +61,10 @@ let arpabetDict = {};
 fs.readFile('data.json', (err, data) => {
     if (err) throw err;
     arpabetDict = JSON.parse(data);
-    console.log(arpabetDict['ABNORMAL']);
+    //console.log(arpabetDict['ABNORMAL']);
 });
-console.log('when does this execute?');
+//console.log('when does this execute?');
 //const arpabetDict = JSON.parse(fs.readFileSync('./data.json'));
-
 
 function ArpabetToIpa(phonetic) {
     return conversionDict[phonetic];
@@ -73,14 +72,8 @@ function ArpabetToIpa(phonetic) {
 
 // I need to go back and actually test this in order to see if the asynchronous calls are correct
 function RequestWordData(word) {
-    // check to make sure the selected word isn't already stored
-    if(word in syllableDict){
-        console.log('Data already retreived for: ' + word);
-        return;
-    }
-
     const url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + word + "?key=" + key;
-    
+
     // request for data from Merriam-Webster API
     // request code used from: https://www.twilio.com/blog/2017/08/http-requests-in-node-js.html
     https.get(url, (resp) => {
@@ -95,25 +88,44 @@ function RequestWordData(word) {
             let syllables = response[0]['hwi']['hw'].split('*');
             //console.log(syllables);
             syllableDict[word]['syllables'] = syllables;
-            
+            console.log('Syllables set for: ' + word);
         });
     }).on('error', (err) => {
         console.log('Error: ' + err.message);
     });
+}
 
-    // get the pronunciation of the word while the dictionary API is processing
-    pronun = arpabetDict[word];
+function SetPronunciation(word){
+    // get the pronunciation of the word before 
+    let pronun = arpabetDict[word];
     let i, j;
     for(i = 0; i < pronun.length; i++){
         for(j = 0; j < pronun[i].length; j++){
             pronun[i][j] = ArpabetToIpa(pronun[i][j]);
         }
     }
-    console.log(pronun);
+    //console.log(pronun);
     syllableDict[word]['pronunciation'] = pronun;
+    console.log('Pronunciation set for: ' + word);
+}
+
+function AddWordToDict(word){
+    // check to make sure the selected word isn't already stored
+    if(word in syllableDict){
+        console.log('Data already retreived for: ' + word);
+        return;
+    }
+    
+    syllableDict[word] = {};
+    RequestWordData(word);
+    SetPronunciation(word);
 }
 
 // Test to make sure that the function is working
-RequestWordData("actually");
-RequestWordData("literally");
+function test(word){
+    console.log(word+':');
+    AddWordToDict(word);
+}
+setTimeout(test, 1000, 'actually');
+setTimeout(test, 1000, 'literally');
 //console.log(arpabetDict['really']);
