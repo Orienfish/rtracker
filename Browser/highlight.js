@@ -13,9 +13,7 @@ function highlight_element(e) {
 }
 
 function remove_inner_tags(e) {
-  console.log(e.innerHTML);
   e.innerHTML = e.innerText+"<br>";
-  console.log(e.innerText);
 }
 
 function highlight_next(e_list, next, prev = null) {

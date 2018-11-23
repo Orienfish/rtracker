@@ -48,7 +48,6 @@ function track_index (e_list, i) {
  */
 function  get_line_pos (e, others) {
   let lines = e.parentElement.children
-  console.log(lines);
   for (let index = 0; index < lines.length; index++) {
     if(lines[index].innerText == e.innerText)
     return index;

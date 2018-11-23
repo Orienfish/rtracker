@@ -38,7 +38,6 @@ function change_lines (e) {
 }
 
 // testing getting elements with mouse click
-console.log('adding event listener for clicks');
 document.addEventListener("click", function(e){
     let mouse_x = e.clientX;               // Get the horizontal coordinate
     let mouse_y = e.clientY;               // Get the vertical coordinate
