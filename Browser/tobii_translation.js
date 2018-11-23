@@ -29,8 +29,8 @@ function getHeight() {
 // find the x,y coordinates relative to webpage content
 // return neg values - not looking at any webpage content
 function translate_xy (tobii_x, tobii_y) {
-  let browser_top = device_h - getHeight()
-  let browser_side = device_w - getWidth()
+  let browser_top = device_h*px_ratio - getHeight()
+  let browser_side = device_w*px_ratio - getWidth()
   return { x : browser_side - tobii_x, y : browser_top - tobii_y };
 }
 
@@ -39,6 +39,3 @@ console.log('Height : ' + getHeight() );
 console.log('Ratio : ' + px_ratio );
 console.log('Local width : ' + device_w);
 console.log('Local hight : ' + device_h);
-
-//TODO: get the tobii coordinates and translate it relative to these values
-//TODO: get the physical screen x,y
