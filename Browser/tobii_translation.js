@@ -37,5 +37,5 @@ function translate_xy (tobii_x, tobii_y) {
 console.log('Width :  ' +  getWidth() );
 console.log('Height : ' + getHeight() );
 console.log('Ratio : ' + px_ratio );
-console.log('Local width : ' + device_w);
-console.log('Local hight : ' + device_h);
+console.log('Local width : ' + device_w*px_ratio);
+console.log('Local hight : ' + device_h*px_ratio);

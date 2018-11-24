@@ -1,4 +1,5 @@
 // provide centralized interface for tracking the current line that the reader is on
+// TODO: only provide the tracking on elements that contain the class hl
 
 // NOTE: THIS COULD BE PROBLEMATIC IF WE ARE TRANSFERRING TO DIFFERENT PARAGRAPHS 
 let prev_line_i = null // keep track of the previous line that was highlighted

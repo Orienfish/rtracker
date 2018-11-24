@@ -13,5 +13,60 @@
     <span class=hl style="font-size: 50px">accepted; instead, radical ideas will often encounter criticism<br></span>
     <span class=hl style="font-size: 50px">without constructive comment, but this fact does not negate our<br></span>
     <span class=hl style="font-size: 50px">responsibility to write them and take a stand.<br></span></p>
+	<form id="sendForm">
+		<input id="sendText" placeholder="Text to send" />
+	</form>
+	<pre id="incomming"></pre>
 </body>
+<script type="text/javascript">
+    /*var start = function () {
+        var inc = document.getElementById('incomming');
+        var wsImpl = window.WebSocket || window.MozWebSocket;
+        var form = document.getElementById('sendForm');
+        var input = document.getElementById('sendText');
+        var x;
+        var y;
+        var tobii_coords;
+
+        inc.innerHTML += "connecting to server ..<br/>";
+
+        // create a new websocket and connect
+        window.ws = new wsImpl('ws://localhost:8181/');
+
+        // when data is comming from the server, this metod is called
+        ws.onmessage = function (evt) {
+            // parse the data, then call the tracking method
+            setTimeout(function () {
+                    if (newState == -1) {
+                        alert('tobii streaming has stopped');
+                    }
+                }, 1000);
+            tobii_coords = evt.data.split(',');
+            x = tobii_coords[0];
+            y = tobii_coords[1];
+            //console.log(x, y);
+            let line = document.elementFromPoint(x,y); //get the line using mouse coordinates
+            console.log(line)
+            inc.innerHTML = evt.data + '<br/>';
+        };
+
+        // when the connection is established, this method is called
+        ws.onopen = function () {
+            inc.innerHTML += '.. connection open<br/>';
+        };
+
+        // when the connection is closed, this method is called
+        ws.onclose = function () {
+            inc.innerHTML += '.. connection closed<br/>';
+        }
+
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            var val = input.value;
+            ws.send(val);
+            input.value = "";
+        });
+    }
+    window.onload = start;*/
+</script>
 </html>

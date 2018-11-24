@@ -1,4 +1,6 @@
 // test website: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/What_next_
+// TODO: scrape all the elements on a webpage so that we can have our unique class name that does not inerfere with existing 
+// webpage elements.
 
 document.body.style.border = "5px solid red";
 

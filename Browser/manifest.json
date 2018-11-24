@@ -12,7 +12,8 @@
   "content_scripts": [
     {
       "matches": ["*://*.mozilla.org/*",
-                  "file:///home/dodly/UCSD/FA18/cse118/shared_browder/Browser/demo.html"],
+                  "file:///home/dodly/UCSD/FA18/cse118/shared_browder/Browser/demo.html",
+                  "file:///C:/Users/Ollie/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState/rootfs/home/dodly/browser/Browser/demo.html"],
       "js": [
               "reformat.js", 
               "highlight.js",
@@ -24,6 +25,10 @@
               "tobii_translation.js"
             ]
     }
-  ]
-
+  ],
+  "background": {
+    "scripts": [
+      "background/tobii_handler.js"
+    ]
+  }
 }

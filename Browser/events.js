@@ -1,3 +1,5 @@
+// TODO: make the concrete variables in the websocket executable and tobii script work
+
 /** 
  * apply styling to specific line in element
  * @param {*} e - element containing lines to read
