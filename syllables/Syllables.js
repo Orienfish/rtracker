@@ -1,7 +1,6 @@
 const https = require('https');
 const fs = require('fs');
 const key = "f5b9a3a3-0560-4ea5-8a8d-de8e489336c5";
-//const arpabetDict = require('./data.json');
 const conversionDict = {
     "AA" : "ɑ",
     "AE" : "æ",
@@ -57,14 +56,13 @@ const conversionDict = {
 };
 let syllableDict = {};
 let arpabetDict = {};
+let reviewList = [];
 
+//read the CMU dictionary from disk
 fs.readFile('data.json', (err, data) => {
     if (err) throw err;
     arpabetDict = JSON.parse(data);
-    //console.log(arpabetDict['ABNORMAL']);
 });
-//console.log('when does this execute?');
-//const arpabetDict = JSON.parse(fs.readFileSync('./data.json'));
 
 function ArpabetToIpa(phonetic) {
     return conversionDict[phonetic];
@@ -89,6 +87,21 @@ function RequestWordData(word) {
             //console.log(syllables);
             syllableDict[word]['syllables'] = syllables;
             console.log('Syllables set for: ' + word);
+            
+            //validate the number of syllables are the same as the pronunciation (therefore usable)
+            if(syllableDict[word]['syllables'].length == syllableDict[word]['pronunciation']){
+                syllableDict[word]['valid'] = true;
+            } else{
+                syllableDict[word]['valid'] = false;
+            }
+
+            //add the data to the review list
+            let entry = {};
+            entry['word'] = word;
+            entry['syllables'] = syllableDict[word]['syllables'];
+            entry['pronuctiation'] = syllableDict[word]['pronunciation'];
+            entry['valid'] = syllableDict['valid'];
+            reviewList.push(entry);
         });
     }).on('error', (err) => {
         console.log('Error: ' + err.message);
@@ -121,11 +134,32 @@ function AddWordToDict(word){
     SetPronunciation(word);
 }
 
+// adds the ability to empty the list for any given reason
+function ClearReviewList(){
+    reviewList = [];
+}
+
+//allows for the call to remove a word from the review list
+function RemoveReviewWord(word){
+    let i;
+    for(i = 0; i < reviewList.length; i++){
+        if(reviewList[i]['word'] == word){
+            reviewList.splice(i,1);
+            return;
+        }
+    }
+
+    //word was not found in reviewList
+    console.log('Review word removal failed. Word not found in list: ' + word);
+}
+
 // Test to make sure that the function is working
 function test(word){
     console.log(word+':');
     AddWordToDict(word);
 }
+
+//delay test to allow data to be read from disk
 setTimeout(test, 1000, 'actually');
 setTimeout(test, 1000, 'literally');
 //console.log(arpabetDict['really']);
