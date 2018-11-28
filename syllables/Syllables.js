@@ -1,6 +1,7 @@
 const https = require('https');
-const fs = require('fs');
+//const fs = require('fs');
 const key = "f5b9a3a3-0560-4ea5-8a8d-de8e489336c5";
+const arpabetDict = require('./data.json');
 const conversionDict = {
     "AA" : "ɑ",
     "AE" : "æ",
@@ -55,20 +56,19 @@ const conversionDict = {
     "ZH" : "ʒ"
 };
 let syllableDict = {};
-let arpabetDict = {};
-let reviewList = [];
+//let arpabetDict = {};
 
-//read the CMU dictionary from disk
-fs.readFile('data.json', (err, data) => {
-    if (err) throw err;
-    arpabetDict = JSON.parse(data);
-});
+/*function loadArpabetDict(){
+    fs.readFile('data.json', (err, data) => {
+        if (err) throw err;
+        arpabetDict = JSON.parse(data);
+    });
+}*/
 
 function ArpabetToIpa(phonetic) {
     return conversionDict[phonetic];
 }
 
-// I need to go back and actually test this in order to see if the asynchronous calls are correct
 function RequestWordData(word) {
     const url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + word + "?key=" + key;
 
@@ -87,39 +87,30 @@ function RequestWordData(word) {
             //console.log(syllables);
             syllableDict[word]['syllables'] = syllables;
             console.log('Syllables set for: ' + word);
-            
-            //validate the number of syllables are the same as the pronunciation (therefore usable)
-            if(syllableDict[word]['syllables'].length == syllableDict[word]['pronunciation']){
-                syllableDict[word]['valid'] = true;
-            } else{
-                syllableDict[word]['valid'] = false;
-            }
-
-            //add the data to the review list
-            let entry = {};
-            entry['word'] = word;
-            entry['syllables'] = syllableDict[word]['syllables'];
-            entry['pronuctiation'] = syllableDict[word]['pronunciation'];
-            entry['valid'] = syllableDict['valid'];
-            reviewList.push(entry);
         });
     }).on('error', (err) => {
         console.log('Error: ' + err.message);
     });
 }
 
-function SetPronunciation(word){
+function GetPronunciation(word){
     // get the pronunciation of the word before 
     let pronun = arpabetDict[word];
     let i, j;
-    for(i = 0; i < pronun.length; i++){
+    let ipa = '';
+    //TEMP TO TEST PRONUNCIATION BY SYLLABLE
+    //for(i = 0; i < pronun.length; i++){
+    for(i = 0; i < 1; i++){
         for(j = 0; j < pronun[i].length; j++){
             pronun[i][j] = ArpabetToIpa(pronun[i][j]);
+            ipa = ipa + pronun[i][j];
         }
     }
     //console.log(pronun);
     syllableDict[word]['pronunciation'] = pronun;
     console.log('Pronunciation set for: ' + word);
+    console.log('ipa = ' + ipa);
+    return ipa;
 }
 
 function AddWordToDict(word){
@@ -131,26 +122,7 @@ function AddWordToDict(word){
     
     syllableDict[word] = {};
     RequestWordData(word);
-    SetPronunciation(word);
-}
-
-// adds the ability to empty the list for any given reason
-function ClearReviewList(){
-    reviewList = [];
-}
-
-//allows for the call to remove a word from the review list
-function RemoveReviewWord(word){
-    let i;
-    for(i = 0; i < reviewList.length; i++){
-        if(reviewList[i]['word'] == word){
-            reviewList.splice(i,1);
-            return;
-        }
-    }
-
-    //word was not found in reviewList
-    console.log('Review word removal failed. Word not found in list: ' + word);
+    GetPronunciation(word);
 }
 
 // Test to make sure that the function is working
@@ -159,7 +131,6 @@ function test(word){
     AddWordToDict(word);
 }
 
-//delay test to allow data to be read from disk
-setTimeout(test, 1000, 'actually');
-setTimeout(test, 1000, 'literally');
+//setTimeout(test, 1000, 'actually');
+//setTimeout(test, 1000, 'literally');
 //console.log(arpabetDict['really']);
