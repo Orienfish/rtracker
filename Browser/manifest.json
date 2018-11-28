@@ -20,9 +20,7 @@
               "blur.js",
               "track.js", 
               "events.js",
-              "imported_code/socket.io.js",
-              "mouse_events.js",
-              "tobii_translation.js"
+              "mouse_events.js"
             ]
     }
   ],
