@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tobii.Interaction;
 using Fleck;
 
@@ -20,17 +18,27 @@ namespace TobiiApp
             var host = new Host();
             var gazePointDataStream = host.Streams.CreateGazePointDataStream();
 
+
+            // start server
             server.Start(socket =>
             {
                 socket.OnOpen = () =>
                 {
                     Console.WriteLine("Socket Open!");
                     allSockets.Add(socket);
+                    int counter = 0;
 
+                    // get gaze data
                     gazePointDataStream.GazePoint((x, y, ts) =>
                     {
                         // send x,y data
-                        allSockets.ToList().ForEach(s => s.Send(String.Concat(x.ToString(), ",", y.ToString())));
+                        counter++;
+
+                        if (counter == 10)
+                        {
+                            allSockets.ToList().ForEach(s => s.Send(String.Concat(x.ToString(), ",", y.ToString())));
+                            counter = 0;
+                        }
                     });
                 };
                 socket.OnClose = () =>
