@@ -61,6 +61,9 @@ function  get_line_pos (e, others) {
  * @param {e} - element that we want to track for the reader 
  */
 function track (e) {
-  all_lines = e.parentElement.children;
-  track_index(all_lines, get_line_pos(e, all_lines));
+  // check to see if the child element is a line -- otherwise do not do anything
+  if (e.className == 'hl') {
+    all_lines = e.parentElement.children;
+    track_index(all_lines, get_line_pos(e, all_lines));
+  }
 }

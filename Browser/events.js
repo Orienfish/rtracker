@@ -24,8 +24,9 @@ var myPort = browser.runtime.connect({name:"port-from-cs"});
 myPort.postMessage({greeting: "hello from content script"});
 
 myPort.onMessage.addListener(function(m) {
-  console.log("In content script, received message from background script: ");
   console.log(m);
+  let line = document.elementFromPoint(m.x, m.y); //get the line using mouse coordinates
+  track(line)
 });
 
 document.body.addEventListener("click", function() {
