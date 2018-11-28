@@ -84,9 +84,11 @@ function RequestWordData(word) {
         resp.on('end', () => {
             let response = JSON.parse(data);
             let syllables = response[0]['hwi']['hw'].split('*');
-            //console.log(syllables);
+            console.log(syllables);
             syllableDict[word]['syllables'] = syllables;
             console.log('Syllables set for: ' + word);
+
+            //TODO: add event representing it is finished
         });
     }).on('error', (err) => {
         console.log('Error: ' + err.message);
@@ -98,19 +100,22 @@ function GetPronunciation(word){
     let pronun = arpabetDict[word];
     let i, j;
     let ipa = '';
-    //TEMP TO TEST PRONUNCIATION BY SYLLABLE
-    //for(i = 0; i < pronun.length; i++){
-    for(i = 0; i < 1; i++){
+
+    for(i = 0; i < pronun.length; i++){
         for(j = 0; j < pronun[i].length; j++){
             pronun[i][j] = ArpabetToIpa(pronun[i][j]);
             ipa = ipa + pronun[i][j];
         }
     }
-    //console.log(pronun);
+    console.log(pronun);
     syllableDict[word]['pronunciation'] = pronun;
     console.log('Pronunciation set for: ' + word);
     console.log('ipa = ' + ipa);
-    return ipa;
+
+    //TODO: add event to signify it is finished
+
+    //may or may not return stuff. was there for testing.
+    //return ipa;
 }
 
 function AddWordToDict(word){
