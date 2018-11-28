@@ -34,7 +34,7 @@ namespace TobiiApp
                         // send x,y data
                         counter++;
 
-                        if (counter == 10)
+                        if (counter == 9)
                         {
                             allSockets.ToList().ForEach(s => s.Send(String.Concat(x.ToString(), ",", y.ToString())));
                             counter = 0;
