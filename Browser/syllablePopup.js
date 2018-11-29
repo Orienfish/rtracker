@@ -2,13 +2,21 @@
 document.body.innerHTML += '<button id="myBtn">Open Modal</button>\n' +
 '<div id="myModal" class="modal">\n' + '<div class="modal-content">\n' +
 '  <div class="modal-header">\n' + '    <span class="close">&times;</span>\n'+
-'    <h2>Syllable Breakdown</h2>\n' + '  </div>\n' +
-'  <div class="modal-body">\n' + '    <p>Put syllables here</p>\n' +
+'    <h2>unsuccessful</h2>\n' + '  </div>\n' +
+'  <div class="modal-body">\n' + '    <p>un * suc * cess * ful</p>\n' +
 '  </div>\n' + '  <div class="full-word">\n' +
-'    <h3>Put full word here??!?</h3>\n' + '  </div>\n' +
+'    <h3>1. not achieving or not attended with success</h3>\n' + '  </div>\n' +
 '</div>\n' + '</div>\n';
 
 //browser.body.innerHTML += '<p id="WordToSearch"></p>';
+
+var syllablePort = browser.runtime.connect({name:"port-from-syllable"});
+syllablePort.onMessage.addListener(function(m) {
+    console.log(m);
+    //TODO: add code to change the elements of the modal
+    modal.style.display = "block";
+    console.log('the modal should now be displayed');
+  });
 
 // Get the modal
 var modal = document.getElementById('myModal');
