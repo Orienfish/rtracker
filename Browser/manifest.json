@@ -1,28 +1,16 @@
 {
-
   "manifest_version": 2,
-  "name": "Borderify",
+  "name": "rTracker",
   "version": "1.0",
   "description": "Reformats the page and introduces a better format for eye tracker readability.",
-
+  
   "icons": {
     "48": "icons/border-48.png"
   },
-
-  "content_scripts": [
-    {
-      "matches": ["*://*.mozilla.org/*",
-                  "file:///home/dodly/UCSD/FA18/cse118/shared_browder/Browser/demo.html"],
-      "js": [
-              "reformat.js", 
-              "highlight.js",
-              "blur.js",
-              "track.js", 
-              "events.js",
-              "socket.io.js",
-              "socket.js"
-            ]
-    }
-  ]
-
+  
+  "permissions": ["contextMenus"],
+  
+  "background": {
+        "scripts": ["background.js"]
+  }
 }
