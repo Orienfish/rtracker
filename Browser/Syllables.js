@@ -216,6 +216,14 @@ function workAround(){
     });
 }
 
+function getSyllables(word){
+    if(word in syllableDict){
+        return syllableDict[word];
+    }
+    console.log("Could not retrieve syllables for: " + word);
+    return undefined;
+}
+
 //setTimeout(workAround, 1000);
 //setTimeout(test, 1000, 'stand');
 //setTimeout(test, 1000, 'literally');

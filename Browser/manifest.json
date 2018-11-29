@@ -8,9 +8,18 @@
     "48": "icons/border-48.png"
   },
   
-  "permissions": ["contextMenus"],
+  "permissions": ["menus", "contextMenus", "activeTab"],
+  "content_scripts": [
+    {
+      "css": ["syllablePopup.css"],
+      "matches": ["<all_urls>"],
+      "js": [
+              "syllablePopup.js"
+            ]
+    }
+  ],
   
   "background": {
-        "scripts": ["background.js"]
+        "scripts": ["syllables.js", "background.js"]
   }
 }
