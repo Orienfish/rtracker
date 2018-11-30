@@ -38,10 +38,11 @@ function connected(p) {
                 }
             }, 1000);
             tobii_coords = evt.data.split(',');
-            portFromCS.postMessage(evt.data);
-            x = tobii_coords[0]
-            y = tobii_coords[1];
-            portFromCS.postMessage({"x": x, "y": y});
+            raw_x = tobii_coords[0]
+            raw_y = tobii_coords[1];
+
+            // send the coordinates to the browser
+            portFromCS.postMessage({"x": raw_x, "y": raw_y});
             evt_counter = 0
         }
     };

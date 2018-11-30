@@ -19,6 +19,7 @@
               "highlight.js",
               "blur.js",
               "track.js", 
+              "tobii_translation.js", 
               "events.js",
               "mouse_events.js"
             ]

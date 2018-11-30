@@ -26,12 +26,15 @@ function getHeight() {
   );
 }
 
+
 // find the x,y coordinates relative to webpage content
 // return neg values - not looking at any webpage content
 function translate_xy (tobii_x, tobii_y) {
-  let browser_top = device_h*px_ratio - getHeight()
-  let browser_side = device_w*px_ratio - getWidth()
-  return { x : browser_side - tobii_x, y : browser_top - tobii_y };
+  var browser_top = device_h*px_ratio - getHeight()
+  var browser_side = device_w*px_ratio - getWidth()
+  return function () {
+    return { x : browser_side - tobii_x, y : browser_top - tobii_y };
+  }
 }
 
 console.log('Width :  ' +  getWidth() );

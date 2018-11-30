@@ -60,10 +60,12 @@ function  get_line_pos (e, others) {
  * perform the styling on a given line inside a p element
  * @param {e} - element that we want to track for the reader 
  */
+// TODO: get this to ignore line breaks
 function track (e) {
   // check to see if the child element is a line -- otherwise do not do anything
   if (e.className == 'hl') {
     all_lines = e.parentElement.children;
+    //all_lines = e.parentElement.getElementsByClassName('hl');
     track_index(all_lines, get_line_pos(e, all_lines));
   }
 }
