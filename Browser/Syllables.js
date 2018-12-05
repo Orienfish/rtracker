@@ -2,8 +2,6 @@
 //const https = require('https');
 //const fs = require('fs');
 const key = "f5b9a3a3-0560-4ea5-8a8d-de8e489336c5";
-//const arpabetDict = require('./data.json');
-//const arpabetDict = JSON.parse(data.json);
 const conversionDict = {
     "AA" : "ɑ",
     "AE" : "æ",
@@ -127,7 +125,7 @@ function ArpabetToIpa(phonetic) {
     return conversionDict[phonetic];
 }
 
-function RequestWordData(word) {
+async function RequestWordData(word) {
     const url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + word + "?key=" + key;
 
     // request for data from Merriam-Webster API
@@ -163,12 +161,14 @@ function RequestWordData(word) {
 
 function GetPronunciation(word){
     word = word.toLowerCase();
-    // get the pronunciation of the word before 
+    // if word not in CMU ARPABET Dict, set pronun to undefined and return
     if(!(word in arpabetDict)){
         console.log(word + " not in arpabetDict. Skipping.");
-        return;
+        syllableDict[word]['pronunciation'] = undefined;
+        return undefined;
     }
     let pronun = arpabetDict[word];
+
     let i, j;
     let ipa = '';
 
@@ -180,19 +180,15 @@ function GetPronunciation(word){
     }
     console.log(pronun);
     syllableDict[word]['pronunciation'] = pronun;
+    return pronun;
     //console.log('Pronunciation set for: ' + word);
     //console.log('ipa = ' + ipa);
-
-    //TODO: add event to signify it is finished?
-
-    //may or may not return stuff. was there for testing.
-    //return ipa;
 }
 
 function AddWordToDict(word){
     // check to make sure the selected word isn't already stored
     if(word in syllableDict){
-        //console.log('Data already retreived for: ' + word);
+        console.log('Data already retreived for: ' + word);
         return;
     }
     
@@ -217,9 +213,11 @@ function workAround(){
 }
 
 function getSyllables(word){
+    console.log('i get here?');
     if(word in syllableDict){
         return syllableDict[word];
     }
+
     console.log("Could not retrieve syllables for: " + word);
     return undefined;
 }
