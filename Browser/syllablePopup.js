@@ -2,10 +2,10 @@
 document.body.innerHTML += //'<button id="myBtn">Open Modal</button>\n' +
 '<div id="myModal" class="modal">\n' + '<div class="modal-content">\n' +
 '  <div class="modal-header">\n' + '    <span class="close">&times;</span>\n'+
-'    <h2>unsuccessful</h2>\n' + '  </div>\n' +
-'  <div class="modal-body">\n' + '    <p>un * suc * cess * ful</p>\n' +
+'    <h2 id="popup_word">unsuccessful</h2>\n' + '  </div>\n' +
+'  <div class="modal-body">\n' + '    <p id="popup_syllables">un * suc * cess * ful</p>\n' +
 '  </div>\n' + '  <div class="full-word">\n' +
-'    <h3>1. not achieving or not attended with success</h3>\n' + '  </div>\n' +
+'    <h3 id="popup_definition">1. not achieving or not attended with success</h3>\n' + '  </div>\n' +
 '</div>\n' + '</div>\n';
 
 //browser.body.innerHTML += '<p id="WordToSearch"></p>';
@@ -21,21 +21,60 @@ syllablePort.onMessage.addListener(function(m) {
         console.log(m['syllablePopup']['word']);
         console.log(m['syllablePopup']['syllables']);
         console.log(m['syllablePopup']['pronunciation']);
-        //TODO: add code to change the elements of the modal
+
+        // Edit the modal to display the information sent from background scripts
+        editModal(m['syllablePopup']['word'], m['syllablePopup']['syllables'],
+            m['syllablePopup']['pronunciation']);
+
         modal.style.display = "block";
     }
-  });
+});
 
-// Get the button that opens the modal
-//var btn = document.getElementById("myBtn");
+// TODO: add definitions if group wants to do that
+function editModal(word, syllables, pronunciation){
+    // change the word on the modal
+    let current = document.getElementById('popup_word');
+    current.innerHTML = word;
+
+    // change the syllables and pronunciations on the modal
+    // TODO: MAKE EACH SYLLABLE AN INTERACTIVE BUTTON
+    // TODO: ADD TEXT-TO-SPEECH FOR EACH SYLLABLE TO THAT BUTTON
+    current = document.getElementById('popup_syllables');
+    let str = '';
+    if(syllables == undefined){
+        str += 'Unable to retrieve syllables.';
+    } else{
+        for(let i = 0; i < syllables.length; i++){
+            for(let j = 0; j < syllables[i].length; j++){
+                str += syllables[i][j];
+            }
+            if(i < syllables.length - 1){
+                str += ' * ';
+            }
+        }
+    }
+    str += '<br>';
+    if(pronunciation == undefined){
+        str += 'Unable to retrieve pronunciation.'
+    } else{
+        for(let i = 0; i < pronunciation.length; i++){
+            for(let j = 0; j < pronunciation[i].length; j++){
+                str += pronunciation[i][j];
+            }
+            if(i < pronunciation.length - 1){
+                str += ' * ';
+            }
+        }
+    }
+    current.innerHTML = str;
+
+    // TODO: add definition information?
+    current = document.getElementById('popup_definition');
+    current.innerHTML = "";
+}
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-/*btn.onclick = function() {
-    modal.style.display = "block";
-}*/
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -50,14 +89,3 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-/*document.addEventListener("click", function(e) {
-    if (!e.target.classList.contains("page-choice")) {
-      return;
-    }
-  
-    var chosenPage = "https://" + e.target.textContent;
-    browser.tabs.create({
-      url: chosenPage
-    });
-  
-  });*/
