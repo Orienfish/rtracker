@@ -39,6 +39,10 @@ myPort.onMessage.addListener(function(m) {
   tobii_x = m.x
   tobii_y = m.y
 
+  // vertical mode
+
+  // horizontal mode
+
   // have to wait for calibration
   if (tobii_offset_x || tobii_offset_y) {
     browser_x = tobii_x - tobii_offset_x
@@ -74,6 +78,8 @@ function change_lines (e) {
     }
   }
 }
+
+// create calibration modes for the different reading modes
 
 // testing getting elements with mouse click
 // using this to calibrate

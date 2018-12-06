@@ -25,6 +25,12 @@
             ]
     }
   ],
+
+  "browser_action": {
+    "browser_style": true,
+    "default_popup": "popup/menu.html"
+  },
+
   "background": {
     "scripts": [
       "background/tobii_handler.js"
