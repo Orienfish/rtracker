@@ -3,7 +3,11 @@
   "name": "rTracker",
   "version": "1.0",
   "description": "Reformats the page and introduces a better format for eye tracker readability.",
-  
+  "applications": {
+    "gecko": {
+      "id": "EyeShredding@shreddo.edu"
+    }
+  },
   "icons": {
     "48": "icons/border-48.png"
   },
