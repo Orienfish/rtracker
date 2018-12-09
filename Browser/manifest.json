@@ -14,7 +14,13 @@
       "css": ["syllablePopup.css"],
       "matches": ["<all_urls>"],
       "js": [
-              "syllablePopup.js"
+              "syllablePopup.js",
+              "reformat.js", 
+              "highlight.js",
+              "blur.js",
+              "track.js", 
+              "events.js",
+              "socket.js"
             ]
     }
   ],
