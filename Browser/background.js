@@ -9,7 +9,6 @@ browser.runtime.onConnect.addListener(connectPopup);
 
 function connectPopup(p) {
     portFromCS = p;
-    portFromCS.postMessage({ greeting: "hi there content script!" });
     console.log('background port opened');
 }
 

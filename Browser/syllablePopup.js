@@ -21,17 +21,18 @@ syllablePort.onMessage.addListener(function(m) {
         console.log(m['syllablePopup']['word']);
         console.log(m['syllablePopup']['syllables']);
         console.log(m['syllablePopup']['pronunciation']);
+        console.log(m['syllablePopup']['definition']);
 
         // Edit the modal to display the information sent from background scripts
         editModal(m['syllablePopup']['word'], m['syllablePopup']['syllables'],
-            m['syllablePopup']['pronunciation']);
+            m['syllablePopup']['pronunciation'], m['syllablePopup']['definition']);
 
         modal.style.display = "block";
     }
 });
 
 // TODO: add definitions if group wants to do that
-function editModal(word, syllables, pronunciation){
+function editModal(word, syllables, pronunciation, definition){
     // change the word on the modal
     let current = document.getElementById('popup_word');
     current.innerHTML = word;
@@ -62,15 +63,28 @@ function editModal(word, syllables, pronunciation){
                 str += pronunciation[i][j];
             }
             if(i < pronunciation.length - 1){
-                str += ' * ';
+                str += ' ·​ ';
             }
         }
     }
     current.innerHTML = str;
 
     // TODO: add definition information?
+    str = '';
     current = document.getElementById('popup_definition');
-    current.innerHTML = "";
+    if(definition == undefined){
+        str = 'Unable to retrieve definition.';
+    } else{
+        str += 'Definition:<br>'
+        for(let i = 0; i < definition.length; i++){
+            str += (i+1) + '. '
+            str += definition[i];
+            if(i < definition.length - 1){
+                str += '<br>'
+            }
+        }
+    }
+    current.innerHTML = str;
 }
 
 // Get the <span> element that closes the modal

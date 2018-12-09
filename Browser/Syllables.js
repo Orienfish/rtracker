@@ -83,15 +83,13 @@ async function RequestWordData(word, callback) {
 
     client.get(url, function(response) {
         var response1 = JSON.parse(response);
-        let syllables = response1[0]['hwi']['hw'].split('*');
-        
+
         //TODO: more acurately parse the response from Merriam-Webster
         //          make sure that you're using an index that has the right tense of the word
-        syllableDict[word]['syllables'] = syllables;
+        syllableDict[word]['syllables'] = response1[0]['hwi']['hw'].split('*');
 
-        let definitions = [];
-        //TODO: retrieve all the definitions of the word in the correct tense
-        syllableDict[word]['definitions'] = definitions;
+        //TODO: update to grab all definitions relevant and display type
+        syllableDict[word]['definition'] = response1[0]['shortdef'];
 
         let value = wordToJSON(word);
         
@@ -109,7 +107,7 @@ function wordToJSON(word){
     value['syllablePopup']['word'] = word;
     value['syllablePopup']['syllables'] = syllableDict[word]['syllables'];
     value['syllablePopup']['pronunciation'] = syllableDict[word]['pronunciation'];
-    //TODO: value['syllablePopup']['definitions'] = definitions;
+    value['syllablePopup']['definition'] = syllableDict[word]['definition'];
     return value;
 }
 
