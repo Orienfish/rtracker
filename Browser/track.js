@@ -48,24 +48,23 @@ function track_index (e_list, i) {
  * @return the index of the element in the parent, or null if does not exist in parent
  */
 function  get_line_pos (e, others) {
-  let lines = e.parentElement.children
-  for (let index = 0; index < lines.length; index++) {
-    if(lines[index].innerText == e.innerText)
-    return index;
+  for (let index = 0; index < others.length; index++) {
+    if(others[index].innerText == e.innerText) {
+      return index;
+    }
   }
   return null;
 }
 
 /**
  * perform the styling on a given line inside a p element
+ * this will ignore breaks for a page
  * @param {e} - element that we want to track for the reader 
  */
-// TODO: get this to ignore line breaks
 function track (e) {
   // check to see if the child element is a line -- otherwise do not do anything
-  if (e.className == 'hl') {
-    all_lines = e.parentElement.children;
-    //all_lines = e.parentElement.getElementsByClassName('hl');
-    track_index(all_lines, get_line_pos(e, all_lines));
+  if (e && e.className == 'hl') {
+    hl_lines = e.parentElement.getElementsByClassName('hl');
+    track_index(hl_lines, get_line_pos(e, hl_lines));
   }
 }
