@@ -1,3 +1,4 @@
+// this file is for the modal
 const key = "f5b9a3a3-0560-4ea5-8a8d-de8e489336c5";
 const conversionDict = {
     "AA" : "ɑ",
