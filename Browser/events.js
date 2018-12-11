@@ -87,6 +87,8 @@ function change_lines (e) {
 // using this to calibrate
 document.addEventListener("click", function(e){
 
+    // add check to see if the clibration button has been clicked
+
     // calibration lol
     let mouse_x = e.clientX;               // Get the horizontal coordinate
     let mouse_y = e.clientY;               // Get the vertical coordinate
