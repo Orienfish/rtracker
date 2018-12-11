@@ -35,7 +35,7 @@ function get_lines() {
 function span_paragraphs (p) {
   let i;
 
-  lines = get_lines();
+  //lines = get_lines();
 
   // apply the groupings for highlighting
   for (i = 0; i < lines.length; i++) {

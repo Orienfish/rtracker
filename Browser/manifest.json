@@ -1,24 +1,24 @@
 {
-
   "manifest_version": 2,
-  "name": "Borderify",
+  "name": "rTracker",
   "version": "1.0",
+  "description": "Reformats the page and introduces a better format for eye tracker readability.",
   "applications": {
     "gecko": {
       "id": "EyeShredding@shreddo.edu"
     }
   },
-
-  "description": "Reformats the page and introduces a better format for eye tracker readability.",
-
   "icons": {
     "48": "icons/border-48.png"
   },
-
+  
+  "permissions": ["menus", "contextMenus", "activeTab"],
   "content_scripts": [
     {
-      "matches": ["*://*.mozilla.org/*"],
+      "css": ["syllablePopup.css"],
+      "matches": ["<all_urls>"],
       "js": [
+              "syllablePopup.js",
               "reformat.js", 
               "highlight.js",
               "blur.js",
@@ -27,6 +27,9 @@
               "socket.js"
             ]
     }
-  ]
-
+  ],
+  
+  "background": {
+        "scripts": ["data.js", "syllables.js", "background.js"]
+  }
 }
