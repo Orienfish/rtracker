@@ -68,3 +68,10 @@ function track (e) {
     track_index(hl_lines, get_line_pos(e, hl_lines));
   }
 }
+
+function get_others (e) {
+  if (e && e.className == 'hl') {
+    return hl_lines = e.parentElement.getElementsByClassName('hl');
+  }
+  return null;
+}
