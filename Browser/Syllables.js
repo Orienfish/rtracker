@@ -86,21 +86,17 @@ async function RequestWordData(word, callback) {
 
         //TODO: more acurately parse the response from Merriam-Webster
         //          make sure that you're using an index that has the right tense of the word
-        let syllables = response1[0]['hwi']['hw'].split('*');
-        if(syllables){
+        try {
+            let syllables = response1[0]['hwi']['hw'].split('*');
             syllableDict[word]['syllables'] = syllables;
-        } else{
-            syllables = undefined;
-        }
-        
-        //TODO: update to grab all definitions relevant and display type
-        let definition = response1[0]['shortdef'];
-        if(definition){
+            let definition = response1[0]['shortdef'];
             syllableDict[word]['definition'] = definition;
-        } else{
-            definition = undefined;
+        } catch(err){
+            console.log('Invalid word sent to Merriam-Webster API');
+            console.log(err);
+            syllableDict[word]['syllables'] = undefined;
+            syllableDict[word]['definition'] = undefined;
         }
-
         let value = wordToJSON(word);
         
         console.log(value);
