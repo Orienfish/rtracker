@@ -6,6 +6,8 @@ px_ratio = window.devicePixelRatio; // the pixel ratio from the physical device 
 var tobii_offset_x = 0; // the difference between the tobii and browser coord system
 var tobii_offset_y = 0;
 
+var calibration_mode = false;
+
 var tobii_x; //raw tobii coordinates
 var tobii_y;
 
@@ -44,7 +46,6 @@ myPort.onMessage.addListener(function(m) {
   console.log(m);
   if (typeof m === 'string'){
       console.log(m)
-
   } else if ('x' in m){
     console.log('converting tobii coords');
 
@@ -73,6 +74,10 @@ myPort.onMessage.addListener(function(m) {
           m['syllablePopup']['pronunciation'], m['syllablePopup']['definition']);
 
       modal.style.display = "block";
+  } else if ('mode' in m) {
+    if (m.mode === 'calibrate') {
+      calibration_mode = true;
+    }
   }
 });
 
@@ -106,9 +111,8 @@ function change_lines (e) {
 // using this to calibrate
 document.addEventListener("click", function(e){
 
-    // add check to see if the clibration button has been clicked
-
     // calibration lol
+  if (calibration_mode) {
     let mouse_x = e.clientX;               // Get the horizontal coordinate
     let mouse_y = e.clientY;               // Get the vertical coordinate
 
@@ -122,6 +126,11 @@ document.addEventListener("click", function(e){
       console.log(tobii_y, mouse_y, tobii_offset_y);
     }
 
-    let line = document.elementFromPoint(mouse_x,mouse_y); //get the line using mouse coordinates
-    track(line)
+    calibration_mode = false;
+  }
+
+    /* this is legacy 
+      let line = document.elementFromPoint(mouse_x,mouse_y); //get the line using mouse coordinates
+      track(line)
+    */
 });

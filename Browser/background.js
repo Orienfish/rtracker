@@ -4,22 +4,24 @@ browser.menus.create({
     contexts: ["selection"]
 });
 
+browser.menus.create({
+    id: "calibrate",
+    title: "Calibrate w/ Tobii",
+    contexts: ["all"]
+});
+
 browser.menus.onClicked.addListener(contextMenuAction);
-browser.runtime.onConnect.addListener(connectPopup);
-
-function connectPopup(p) {
-    portFromCS = p;
-    console.log('background port opened');
-}
-
 
 function contextMenuAction(info, tab){
+
     if (info.menuItemId == "syllables") {
       const word = info.selectionText.replace(/\s+/, "");
-      
       // return stored info or look it up
       GetWordFromDict(word, syllableCallback);
-    }
+
+    } else if (info.menuItemId == 'calibrate') {
+        portFromCS.postMessage({'mode':'calibrate'});
+    } 
 }
 
 function syllableCallback(value){
