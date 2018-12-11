@@ -2,8 +2,6 @@
 // TODO: scrape all the elements on a webpage so that we can have our unique class name that does not inerfere with existing 
 // webpage elements.
 
-document.body.style.border = "5px solid red";
-
 let id_generator = 0;
 
 let ps = document.getElementsByTagName("p");
