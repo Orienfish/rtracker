@@ -15,6 +15,9 @@ var modal = document.getElementById('myModal');
 
 var syllablePort = browser.runtime.connect({name:"port-from-syllable"});
 syllablePort.onMessage.addListener(function(m) {
+    console.log('inside syllable port');
+    console.log(m);
+    console.log('syllablePopup' in m);
     if ('syllablePopup' in m){
         console.log('opening modal');
         console.log('info from syllablePopup.js');

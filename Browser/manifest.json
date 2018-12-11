@@ -16,20 +16,31 @@
   "content_scripts": [
     {
       "css": ["syllablePopup.css"],
-      "matches": ["<all_urls>"],
+      "matches": ["*://*.mozilla.org/*",
+                  "file:///home/dodly/UCSD/FA18/cse118/shared_browder/Browser/demo.html",
+                  "file:///C:/Users/Ollie/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState/rootfs/home/dodly/browser/Browser/demo.html"],
       "js": [
               "syllablePopup.js",
               "reformat.js", 
               "highlight.js",
               "blur.js",
               "track.js", 
+              "tobii_translation.js", 
               "events.js",
-              "socket.js"
+              "mouse_events.js"
             ]
     }
   ],
-  
+  "browser_action": {
+    "browser_style": true,
+    "default_popup": "popup/menu.html"
+  },
   "background": {
-        "scripts": ["data.js", "syllables.js", "background.js"]
+    "scripts": [
+      "background/tobii_handler.js",
+      "data.js",
+      "syllables.js",
+      "background.js"
+    ]
   }
 }

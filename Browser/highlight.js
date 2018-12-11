@@ -13,17 +13,14 @@ function highlight_element(e) {
 }
 
 function remove_inner_tags(e) {
-  e.innerHTML = e.innerText;
+  e.innerHTML = e.innerText+"<br>";
 }
 
-function highlight_next(next, prev = 0) {
+function highlight_next(e_list, next, prev = null) {
       // perform the highlighting of the text
-      highlight_element(next);
+      highlight_element(e_list[next]);
       // perform the removal of highlighting
-      if (prev) {
-        remove_inner_tags(prev);
+      if (prev != null) {
+        remove_inner_tags(e_list[prev]);
       }
-
 }
-
-highlight_element(p_zero);
