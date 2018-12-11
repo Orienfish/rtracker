@@ -87,10 +87,8 @@ async function RequestWordData(word, callback) {
         //TODO: more acurately parse the response from Merriam-Webster
         //          make sure that you're using an index that has the right tense of the word
         try {
-            let syllables = response1[0]['hwi']['hw'].split('*');
-            syllableDict[word]['syllables'] = syllables;
-            let definition = response1[0]['shortdef'];
-            syllableDict[word]['definition'] = definition;
+            syllableDict[word]['syllables'] = response1[0]['hwi']['hw'].split('*');
+            syllableDict[word]['definition'] =  response1[0]['shortdef'];
         } catch(err){
             console.log('Invalid word sent to Merriam-Webster API');
             console.log(err);
